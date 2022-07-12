@@ -1,0 +1,82 @@
+defaults:
+  - _self_
+  - task@_global_: cheetah_run
+
+seed: 0
+data_dir: ./data
+offline_db: medium
+wandb: true
+
+# Training
+load_checkpoint: false
+save_checkpoint: true
+num_workers: 6
+eval_interval: 10
+train_steps: 10000
+eval_every_steps: 2
+num_eval_episodes: 10
+
+# BC Params
+bc_batch_size: 64
+bc_epochs: 10
+bc_warmstart: true
+delay_actor_updates_after: 0
+
+# PPO Params
+actor_update_freq: 1
+hidden_dim: 512
+actor_hidden_dim: 1024
+actor_lr: 3e-4
+actor_eps: 1e-8
+kl_weight: 1.0
+entropy_weight: 0.001
+actor_grad_norm_clip: 100
+
+ope_algo: bcrl
+
+# BCRL
+disable_m_update: false
+design_reg_type: logdet
+design_weight: 1e-6
+design_cov_reg: 1e-8
+reward_weight: 1.0
+lspe_iter: 1000
+phi_lr: 3e-4
+m_lr: 3e-4
+phi_eps: 1e-8
+m_eps: 1e-8
+num_m_updates: 3
+num_phi_updates: 3
+ope_batch_size: 4096
+target_policy: expert
+phi_grad_norm_clip: 1.0
+phi_norm_reg: 0.0
+mix_data: true
+
+m_update_exact: false
+m_reg_weight: 0.01
+m_cons_type: soft_fro # {soft,hard}_{fro,sigma_max}
+
+
+# FQI 
+Q_lr: 3e-4
+Q_eps: 1e-8
+Q_grad_norm_clip: 5.0
+tau: 0.005
+
+# Task Setting
+frame_stack: 3
+action_repeat: 2
+gamma: 0.99
+img_size: 64
+obs_shape: ???
+action_shape: ???
+n_actions: ???
+
+hydra:
+  run:
+    dir: ./local_runs/${now:%Y.%m.%d}/${now:%H%M%S}_${hydra.job.override_dirname}
+
+
+
+
