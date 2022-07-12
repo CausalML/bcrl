@@ -2,6 +2,9 @@
 
 Implementation of BCRL, an algorithm for learning linear Bellman Complete representations with coverage, for offline policy evaluation (OPE). 
 
+## Dataset
+We use the same dataset conventions as [DrQ-v2](https://github.com/facebookresearch/drqv2). More specifically, we have a directory of episodes saved as `.npz` files with the following keys: `observation`, `action`, `reward`.
+
 ## Quick Start
 First install [DeepMind Control Suite (dm_env)](https://github.com/deepmind/dm_env),
 [PyTorch](https://pytorch.org/),
@@ -13,14 +16,6 @@ For example, to run on environment cheetah run,
 ```
 python run.py task=cheetah_run
 ```
-
-## Environments Supported
-This repository supports 4 DeepMind Control Suite environments:
-1. Finger Turn Hard
-2. Cheetah Run
-3. Quadruped Walk
-4. Humanoid Stand
-
 
 ## Paper and Citation
 To cite this work, please use the following citation. 
